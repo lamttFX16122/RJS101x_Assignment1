@@ -27,6 +27,15 @@ class App extends Component {
       column:col
     });
   }
+  displayText=()=>{
+    if(this.state.staffInfo==null)
+    {
+      return {display:"block"}
+    }
+    else{
+      return {display:"none"}
+    }
+  }
   render() {
     return (
       <div>
@@ -42,6 +51,9 @@ class App extends Component {
             onReceiveStaff={this.getStaff}
             column={this.state.column}
           ></StaffList>
+        <div className="row mt-2 ml-4" style={this.displayText()}>
+            <p>Bấm vào tên nhân viên để xem thông tin.</p>
+        </div>
           <StaffInfo
             staffInfo={this.state.staffInfo}
             department={this.state.department}
