@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 class SearchStaff extends Component {
-    onHandleSearch=(e)=>{ this.props.onReceiveStaffName(e.target.value);
-        // console.log(e.target.value);
+    onHandleSearch=(e)=>{ 
+        this.props.onReceiveStaffName(e.target.value);
     }
   render() {
 

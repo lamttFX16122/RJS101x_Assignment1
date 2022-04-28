@@ -14,7 +14,8 @@ class App extends Component {
       staffInfo: null,
       department: null,
       column: "col-lg-4 col-md-6 col-sm-6 col-12",
-      filterName:null
+      txtFilter: null,
+      isHide:true
     };
   }
   getStaff = (staff) => {
@@ -22,6 +23,7 @@ class App extends Component {
       this.setState({
         staffInfo: staff,
         department: staff.department.name,
+        isHide:true
       });
     }
   };
@@ -31,7 +33,7 @@ class App extends Component {
     });
   }
   displayText=()=>{
-    if(this.state.staffInfo==null)
+    if(this.state.staffInfo==null || !this.state.isHide)
     {
       return {display:"block"}
     }
@@ -39,13 +41,11 @@ class App extends Component {
       return {display:"none"}
     }
   }
-  filterName=(name)=>{
-    if(name!=null)
-    {
-      this.setState({
-        filterName:name
-      })
-    }
+  filterName=(text)=>{
+    this.setState({
+      txtFilter:text,
+      isHide:false
+    })
   }
   render() {
     return (
@@ -60,7 +60,7 @@ class App extends Component {
             listStaff={this.state.listStaff}
             onReceiveStaff={this.getStaff}
             column={this.state.column}
-            filterName={this.state.filterName}
+            txtFilter={this.state.txtFilter}
           ></StaffList>
         <div className="row mt-2 ml-4" style={this.displayText()}>
             <p>Bấm vào tên nhân viên để xem thông tin.</p>
@@ -68,6 +68,7 @@ class App extends Component {
           <StaffInfo
             staffInfo={this.state.staffInfo}
             department={this.state.department}
+            isHide={this.state.isHide}
           ></StaffInfo>
         </div>
       </div>

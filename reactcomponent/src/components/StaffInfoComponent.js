@@ -3,7 +3,7 @@ import moment from "moment";
 
 class StaffInfo extends Component {
   render() {
-    if (this.props.staffInfo != null) {
+    if (this.props.staffInfo != null && this.props.isHide) {
       return (
         <div className="row m-2">
           <div className="col-lg-12 col-md-12 col-sm-12 col-12">
