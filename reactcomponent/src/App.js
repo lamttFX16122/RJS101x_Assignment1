@@ -32,15 +32,15 @@ class App extends Component {
       column:col
     });
   }
-  displayText=()=>{
-    if(this.state.staffInfo==null || !this.state.isHide)
-    {
-      return {display:"block"}
-    }
-    else{
-      return {display:"none"}
-    }
-  }
+  // displayText=()=>{
+  //   if(this.state.staffInfo==null || !this.state.isHide)
+  //   {
+  //     return {display:"block"}
+  //   }
+  //   else{
+  //     return {display:"none"}
+  //   }
+  // }
   filterName=(text)=>{
     this.setState({
       txtFilter:text,
@@ -53,18 +53,26 @@ class App extends Component {
         <nav className="navbar navbar-dark bg-primary text-white">
           <a className="nav-link active">Ứng dụng quản lý nhân sự v1.0</a>
         </nav>
-          <SetColumn setCulumn={this.onReceiveCul}></SetColumn>
         <div className="container">
+          <div className="row">
+          
+          <div className="col-6">
           <SearchStaff onReceiveStaffName={this.filterName}></SearchStaff>
+          </div>
+          <div className="col-6">
+          <SetColumn setCulumn={this.onReceiveCul}></SetColumn>
+          </div>
+          
+        
+          </div>
+          
           <StaffList
             listStaff={this.state.listStaff}
             onReceiveStaff={this.getStaff}
             column={this.state.column}
             txtFilter={this.state.txtFilter}
           ></StaffList>
-        <div className="row mt-2 ml-4" style={this.displayText()}>
-            <p>Bấm vào tên nhân viên để xem thông tin.</p>
-        </div>
+       
           <StaffInfo
             staffInfo={this.state.staffInfo}
             department={this.state.department}
