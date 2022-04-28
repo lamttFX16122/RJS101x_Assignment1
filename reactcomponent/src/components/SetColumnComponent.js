@@ -53,7 +53,7 @@ class SetColumn extends Component {
   }
   render() {
       return (
-        <div className="row">
+        <div className="row slt-columnchange">
           <div className="form-group">
             {/* <label>Số cột hiển thị</label> */}
             <select className="form-control" name="column" 

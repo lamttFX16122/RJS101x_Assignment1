@@ -42,9 +42,7 @@ class App extends Component {
         <nav className="navbar navbar-dark bg-primary text-white">
           <a className="nav-link active">Ứng dụng quản lý nhân sự v1.0</a>
         </nav>
-        <div className="row">
           <SetColumn setCulumn={this.onReceiveCul}></SetColumn>
-        </div>
         <div className="container">
           <StaffList
             listStaff={this.state.listStaff}
