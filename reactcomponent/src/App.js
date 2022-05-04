@@ -6,6 +6,8 @@ import StaffInfo from "./components/StaffInfoComponent";
 import SetColumn from "./components/SetColumnComponent";
 import SearchStaff from "./components/SearchStaffComponent";
 import { Button } from "bootstrap";
+import Header from "./components/HeaderComponent";
+import Footer from "./components/FooterComponent";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -50,9 +52,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-dark bg-primary text-white">
+        {/* <nav className="navbar navbar-dark bg-primary text-white">
           <a className="nav-link active">Ứng dụng quản lý nhân sự v1.0</a>
-        </nav>
+        </nav> */}
+        <Header></Header>
         <div className="container">
           <div className="row">
           
@@ -79,6 +82,7 @@ class App extends Component {
             isHide={this.state.isHide}
           ></StaffInfo>
         </div>
+<Footer></Footer>
       </div>
     );
   }
