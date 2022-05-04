@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="text-center text-lg-start text-white bg-dark">
+    <footer className="text-center text-lg-start text-white bg-dark mt-5">
       <div className="container p-4 pb-0">
         <section className="">
           <div className="row">
@@ -21,26 +22,9 @@ function Footer() {
               <h5 className="text-uppercase">Links</h5>
 
               <ul className="list-unstyled mb-0">
-                <li>
-                 
-                    Home
-                 
-                </li>
-                <li>
-                
-                    About
-       
-                </li>
-                <li>
-               
-                    Menu
-                
-                </li>
-                <li>
-             
-                    Contact
-            
-                </li>
+                <li><Link to="/">Nhân viên</Link></li>
+                <li><Link to="/department">Phòng Ban</Link></li>
+                <li><Link to="/salary">Bảng Lương</Link></li>
               </ul>
             </div>
           </div>
