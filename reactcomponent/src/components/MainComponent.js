@@ -8,6 +8,7 @@ import SearchStaff from "../components/SearchStaffComponent";
 import Header from "../components/HeaderComponent";
 import Footer from "../components/FooterComponent";
 import { Department } from "./DepartmentComponent";
+import { Salary } from "./SalaryComponent";
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -86,6 +87,7 @@ class Main extends Component {
             ></Route>
             <Route exact path="/staff/:staffId" element={<ReStaffInfoy></ReStaffInfoy>}></Route>
             <Route exact path="/department" element={<Department department={this.state.listDepartment}></Department>}></Route>
+            <Route path="/salary" element={<Salary staff={this.state.listStaff}></Salary>}></Route>
           </Routes>
        
         </div>

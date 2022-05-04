@@ -53,9 +53,9 @@ class Header extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem className="text-left m-2">
-                  {/* <NavLink className="nav-link text-info" to="/menu"> */}
+                  <NavLink className="nav-link text-info" to="/salary">
                     <span className="fa-solid fa-money-check-dollar"></span> Bảng Lương
-                  {/* </NavLink> */}
+                  </NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
