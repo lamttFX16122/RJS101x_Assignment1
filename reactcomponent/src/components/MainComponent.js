@@ -45,33 +45,18 @@ class Main extends Component {
         ></StaffInfo>
       );
     };
-    //   return (
-    //       <div></div>
-        // <StaffInfo
-        //   staff={
-        //     this.state.listStaff.filter(
-        //       (stf) => stf.id === parseInt(match.params.staffId)
-        //     )[0]
-        //   }
-        //   department={
-        //     this.state.listStaff.filter(
-        //       (stf) => stf.id === parseInt(match.params.staffId)
-        //     )[0].department.name
-        //   }
-    //     // ></StaffInfo>
-    //   );
-    // };
+    
     return (
       <div>
         <Header></Header>
         <div className="container">
           <div className="row">
-            <div className="col-6">
-              <SearchStaff onReceiveStaffName={this.filterName}></SearchStaff>
-            </div>
-            <div className="col-6">
+             <div className="col-lg-3 col-md-4 col-sm-4 col-6">
+             <SearchStaff onReceiveStaffName={this.filterName}></SearchStaff>
+             </div>
+             <div className="col-lg-2 col-md-4 col-sm-4 col-6">     
               <SetColumn setCulumn={this.onReceiveCul}></SetColumn>
-            </div>
+             </div>
           </div>
 
         <Routes>

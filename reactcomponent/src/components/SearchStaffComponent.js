@@ -6,10 +6,9 @@ class SearchStaff extends Component {
   };
   render() {
     return (
-      <div className="row m-3">
+      <React.Fragment>
         <div className="form-group">
           <label>Lọc theo tên nhân viên</label>
-        
               <input
                 type="text"
                 className="form-control"
@@ -17,10 +16,8 @@ class SearchStaff extends Component {
                 name="txtName"
                 placeholder="Tên nhân viên"
               />
-    
-         
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

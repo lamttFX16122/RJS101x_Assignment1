@@ -24,7 +24,7 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar className="navbar-dark bg-primary" light expand="md">
+        <Navbar className="navbar-dark bg-primary mb-4" light expand="md">
           <div className="container d-flex flex-row flex-wrap flex-md-nowrap flex-lg-nowrap flex-xl-nowrap">
             <div>
               <NavbarToggler
