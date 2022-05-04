@@ -7,7 +7,7 @@ import {
   Collapse,
   NavItem,
 } from "reactstrap";
-// import { NavLink } from "react-router-dom";
+ import { NavLink } from "react-router-dom";
 
 class Header extends Component {
   constructor(props) {
@@ -43,14 +43,14 @@ class Header extends Component {
             <Collapse isOpen={this.state.isNavOpen} navbar>
               <Nav className="mr-auto" navbar>
                 <NavItem className="text-left m-2">
-                  {/* <NavLink className="nav-link text-info" to="/home"> */}
+                  <NavLink className="nav-link text-info" to="/">
                     <span className="fa-solid fa-users-rays"></span> Nhân Viên
-                  {/* </NavLink> */}
+                  </NavLink>
                 </NavItem>
                 <NavItem className="text-left m-2">
-                  {/* <NavLink className="nav-link text-info" to="/about"> */}
+                  <NavLink className="nav-link text-info" to="/department"> 
                     <span className="fa-solid fa-address-card"></span> Phòng Ban
-                  {/* </NavLink> */}
+                  </NavLink>
                 </NavItem>
                 <NavItem className="text-left m-2">
                   {/* <NavLink className="nav-link text-info" to="/menu"> */}
