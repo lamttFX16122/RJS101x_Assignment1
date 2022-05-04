@@ -13,7 +13,7 @@ class App extends Component {
       listStaff: STAFFS,
       staffInfo: null,
       department: null,
-      column: "col-lg-4 col-md-6 col-sm-6 col-12",
+      column: "col-lg-2 col-md-4 col-sm-6 col-6",
       txtFilter: null,
       isHide:true
     };

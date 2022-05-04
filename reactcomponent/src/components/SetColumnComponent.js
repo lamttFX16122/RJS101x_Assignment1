@@ -38,8 +38,11 @@ class SetColumn extends Component {
       case "3":
         this.props.setCulumn("col-4");
         break;
+        case "4":
+          this.props.setCulumn("col-3");
+          break;
       default:
-        this.props.setCulumn("col-lg-4 col-md-6 col-sm-6 col-12");
+        this.props.setCulumn("col-lg-2 col-md-4 col-sm-6 col-6");
         break;
     }
   };
@@ -58,6 +61,7 @@ class SetColumn extends Component {
             <option value={1}>1 cột</option>
             <option value={2}>2 cột</option>
             <option value={3}>3 cột</option>
+            <option value={4}>4 cột</option>
           </select>
         </div>
 

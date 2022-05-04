@@ -47,19 +47,21 @@
 .card {
     cursor: pointer;
     margin-top: 10px;
+    /* width: 80%; */
 }
 
 .card:hover {
     border: 1px solid orange;
 }
 
-.card-img {
+
+/* .card-img {
     max-width: 214px;
     max-height: 214px;
-}
+} */
 
 .cart-list {
-    height: 30px;
+    /* height: 30px; */
     font-size: 1em;
     justify-content: center;
     align-items: center;

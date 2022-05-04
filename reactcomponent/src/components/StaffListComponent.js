@@ -23,9 +23,9 @@ class StaffList extends Component {
         <div key={value.id} className={this.props.column}>
           <div
             className="card text-white bg-info cart-list"
-            onClick={() => this.staffClick(value)}
-          >
+            onClick={() => this.staffClick(value)}>
             <div className="card-body">
+            <img src={value.image} class="card-img-top" alt={value.name}/>
               <p className="card-text">{value.name}</p>
             </div>
           </div>
