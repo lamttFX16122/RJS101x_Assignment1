@@ -8,7 +8,7 @@ class StaffList extends Component {
     this.state = {
       txtFil: null,
       colShow: null,
-      column:"col-lg-2 col-md-4 col-sm-6 col-6"
+      column: "col-lg-2 col-md-4 col-sm-6 col-6",
     };
   }
   staffClick = (value) => {
@@ -73,10 +73,10 @@ class StaffList extends Component {
           <div className="col-lg-6 col-md-12 col-sm-12 col-12">
             <div className="row">
               <div className="col-lg-7 col-md-7 col-sm-7 col-12">
-              <SearchStaff onReceiveStaffName={this.FilStaff}></SearchStaff>
+                <SearchStaff onReceiveStaffName={this.FilStaff}></SearchStaff>
               </div>
               <div className="col-lg-5 col-md-5 col-sm-5 col-12">
-            <SetColumn setCulumn={this.onReceiveCul}></SetColumn>
+                <SetColumn setCulumn={this.onReceiveCul}></SetColumn>
               </div>
             </div>
           </div>
