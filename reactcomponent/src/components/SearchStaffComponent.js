@@ -7,16 +7,16 @@ class SearchStaff extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="form-group">
-          <label>Lọc theo tên nhân viên</label>
+        {/* <div className="form-group"> */}
+          <label className="mr-1">Filter</label>
               <input
                 type="text"
-                className="form-control"
+                //  className="form-control"
                 onChange={this.onHandleSearch}
                 name="txtName"
                 placeholder="Tên nhân viên"
               />
-        </div>
+        {/* </div> */}
       </React.Fragment>
     );
   }

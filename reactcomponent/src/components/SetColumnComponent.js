@@ -48,11 +48,9 @@ class SetColumn extends Component {
   };
   render() {
     return (
-      // <div className="row slt-columnchange m-3">
-        <div className="form-group">
-          <label>Số cột hiển thị</label>
+        <React.Fragment>
+          <label className="mr-1 ml-3">Hiển thị</label>
           <select
-            className="form-control"
             name="column"
             value={this.state.column}
             onChange={this.HandleChange}
@@ -63,8 +61,7 @@ class SetColumn extends Component {
             <option value={3}>3 cột</option>
             <option value={4}>4 cột</option>
           </select>
-        </div>
-      // </div>
+      </React.Fragment>
     );
   }
 }

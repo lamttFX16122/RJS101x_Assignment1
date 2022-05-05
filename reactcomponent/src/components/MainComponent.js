@@ -16,8 +16,8 @@ class Main extends Component {
       listStaff: STAFFS,
       listDepartment:DEPARTMENTS,
       staffInfo: null,
-      column: "col-lg-2 col-md-4 col-sm-6 col-6",
-      txtFilter: null,
+      // column: "col-lg-2 col-md-4 col-sm-6 col-6",
+      // txtFilter: null,
       isHide: true,
     };
   }
@@ -28,12 +28,12 @@ class Main extends Component {
     });
   };
 
-  filterName = (text) => {
-    this.setState({
-      txtFilter: text,
-      isHide: false,
-    });
-  };
+  // filterName = (text) => {
+  //   this.setState({
+  //     txtFilter: text,
+  //     isHide: false,
+  //   });
+  // };
 
   render() {
    
@@ -50,23 +50,12 @@ class Main extends Component {
       <div>
         <Header></Header>
         <div className="container">
-          <div className="row">
-             <div className="col-lg-3 col-md-4 col-sm-4 col-6">
-             <SearchStaff onReceiveStaffName={this.filterName}></SearchStaff>
-             </div>
-             <div className="col-lg-2 col-md-4 col-sm-4 col-6">     
-              <SetColumn setCulumn={this.onReceiveCul}></SetColumn>
-             </div>
-          </div>
-
         <Routes>
             <Route
               path="/"
               element={
                 <StaffList
                   listStaff={this.state.listStaff}
-                  column={this.state.column}
-                  txtFilter={this.state.txtFilter}
                 ></StaffList>
               }
             ></Route>
