@@ -44,36 +44,36 @@ class Salary extends Component {
 
   if(this.state.filIdStaff==0 && this.state.filSalaryScale!=0 && this.state.fillSalary!=0)
   {
-    arr=this.props.staff.sort((a, b) => {
+     arr=this.props.staff.sort((a, b) => {
       let aSal=Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
       let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
       if(this.state.filSalaryScale==1 && this.state.fillSalary==1)
       {
-        return  Number(a.salaryScale)>Number(b.salaryScale) && aSal>bSal? -1:1;
+        return  Number(a.salaryScale)>=Number(b.salaryScale) && aSal>=bSal? -1:1;
       }
       else if(this.state.filSalaryScale==1 && this.state.fillSalary==2)
       {
-        return  Number(a.salaryScale)>Number(b.salaryScale) && aSal<bSal? -1:1;
+        return  Number(a.salaryScale)>=Number(b.salaryScale) && aSal<=bSal? -1:1;
       }else if(this.state.filSalaryScale==1 && this.state.fillSalary==2)
       {
-        return  Number(a.salaryScale)<Number(b.salaryScale) && aSal<bSal? -1:1;
+        return  Number(a.salaryScale)<=Number(b.salaryScale) && aSal<=bSal? -1:1;
       }
       else{
-        return  Number(a.salaryScale)<Number(b.salaryScale) && aSal>bSal? -1:1;
+        return  Number(a.salaryScale)<=Number(b.salaryScale) && aSal>=bSal? -1:1;
       }
     })  
   }else if(this.state.filIdStaff==0 && this.state.filSalaryScale==0 && this.state.fillSalary!=0)
   {
     arr=this.props.staff.sort((a, b) => {
-      let aSal=Number(Number(a.salaryScale)) * 3000000 + Number(a.overTime) * 200000;
-      let bSal=Number(Number(b.salaryScale)) * 3000000 + Number(b.overTime) * 200000;
+      let aSal=Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+      let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
       if(this.state.fillSalary==1)
       {
-        return  aSal>bSal? -1:1;
+        return  aSal>=bSal? -1:1;
       }
       else
       {
-        return  aSal<bSal? -1:1;
+        return  aSal<=bSal? -1:1;
       }
     });
   }else if(this.state.filIdStaff!=0 && this.state.filSalaryScale==0 && this.state.fillSalary==0)
@@ -81,11 +81,11 @@ class Salary extends Component {
     arr=this.props.staff.sort((a, b) => {
       if(this.state.filIdStaff==1)
       {
-        return  a.id>b.id? -1:1;
+        return  a.id>=b.id? -1:1;
       }
       else
       {
-        return  a.id<b.id? -1:1;
+        return  a.id<=b.id? -1:1;
       }
     });
   }else if(this.state.filIdStaff!=0 && this.state.filSalaryScale!=0 && this.state.fillSalary==0)
@@ -93,18 +93,18 @@ class Salary extends Component {
     arr=this.props.staff.sort((a, b) => {
       if(this.state.filSalaryScale==1 && this.state.filIdStaff==1)
       {
-        return  Number(a.salaryScale)>Number(b.salaryScale) && a.id>b.id? -1:1;
+        return  Number(a.salaryScale)>=Number(b.salaryScale) && a.id>b.id? -1:1;
       }
       else if(this.state.filSalaryScale==1 && this.state.filIdStaff==2)
       {
-        return  Number(a.salaryScale)>Number(b.salaryScale) && a.id<b.id? -1:1;
+        return  Number(a.salaryScale)>=Number(b.salaryScale) && a.id<b.id? -1:1;
       }
       else if(this.state.filSalaryScale==2 && this.state.filIdStaff==2)
       {
-        return  Number(a.salaryScale)<Number(b.salaryScale) && a.id<b.id? -1:1;
+        return  Number(a.salaryScale)<=Number(b.salaryScale) && a.id<b.id? -1:1;
       }
       else{
-        return  Number(a.salaryScale)<Number(b.salaryScale) && a.id>b.id? -1:1;
+        return  Number(a.salaryScale)<=Number(b.salaryScale) && a.id>b.id? -1:1;
       }
     })  
   }else if(this.state.filIdStaff!=0 && this.state.filSalaryScale!=0 && this.state.fillSalary!=0)
@@ -114,28 +114,28 @@ class Salary extends Component {
       arr=this.props.staff.sort((a, b) => {
         let aSal=Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
         let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        return  Number(a.salaryScale)>Number(b.salaryScale) && a.id>b.id && aSal>bSal? -1:1;
+        return  Number(a.salaryScale)>=Number(b.salaryScale) && a.id>=b.id && aSal>=bSal? -1:1;
       });
     }else if(this.state.filIdStaff==1 && this.state.filSalaryScale==2 && this.state.fillSalary==1)
     {
       arr=this.props.staff.sort((a, b) => {
         let aSal=Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
         let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        return  Number(a.salaryScale)<Number(b.salaryScale) && a.id>b.id && aSal>bSal? -1:1;
+        return  Number(a.salaryScale)<=Number(b.salaryScale) && a.id>=b.id && aSal>=bSal? -1:1;
       });
     }else if(this.state.filIdStaff==1 && this.state.filSalaryScale==1 && this.state.fillSalary==2)
     {
       arr=this.props.staff.sort((a, b) => {
         let aSal=Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
         let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        return  Number(a.salaryScale)>Number(b.salaryScale) && a.id>b.id && aSal<bSal? -1:1;
+        return  Number(a.salaryScale)>=Number(b.salaryScale) && a.id>=b.id && aSal<=bSal? -1:1;
       });
     }else if(this.state.filIdStaff==1 && this.state.filSalaryScale==2 && this.state.fillSalary==2)
     {
       arr=this.props.staff.sort((a, b) => {
         let aSal=Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
         let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        return  Number(a.salaryScale)<Number(b.salaryScale) && a.id>b.id && aSal<bSal? -1:1;
+        return  Number(a.salaryScale)<=Number(b.salaryScale) && a.id>=b.id && aSal<=bSal? -1:1;
       });
     }
     else if(this.state.filIdStaff==2 && this.state.filSalaryScale==1 && this.state.fillSalary==1)
@@ -143,7 +143,7 @@ class Salary extends Component {
       arr=this.props.staff.sort((a, b) => {
         let aSal=Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
         let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        return  Number(a.salaryScale)>Number(b.salaryScale) && a.id<b.id && aSal>bSal? -1:1;
+        return  Number(a.salaryScale)>=Number(b.salaryScale) && a.id<=b.id && aSal>=bSal? -1:1;
       });
     }
     else if(this.state.filIdStaff==2 && this.state.filSalaryScale==2 && this.state.fillSalary==1)
@@ -151,21 +151,21 @@ class Salary extends Component {
       arr=this.props.staff.sort((a, b) => {
         let aSal=Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
         let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        return  Number(a.salaryScale)<Number(b.salaryScale) && a.id<b.id && aSal>bSal? -1:1;
+        return  Number(a.salaryScale)<=Number(b.salaryScale) && a.id<=b.id && aSal>=bSal? -1:1;
       });
     }else if(this.state.filIdStaff==2 && this.state.filSalaryScale==2 && this.state.fillSalary==2)
     {
       arr=this.props.staff.sort((a, b) => {
         let aSal=Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
         let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        return  Number(a.salaryScale)<Number(b.salaryScale) && a.id<b.id && aSal<bSal? -1:1;
+        return  Number(a.salaryScale)<=Number(b.salaryScale) && a.id<=b.id && aSal<=bSal? -1:1;
       });
     }else if(this.state.filIdStaff==2 && this.state.filSalaryScale==1 && this.state.fillSalary==2)
     {
       arr=this.props.staff.sort((a, b) => {
         let aSal=Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
         let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        return  Number(a.salaryScale)>Number(b.salaryScale) && a.id<b.id && aSal<bSal? -1:1;
+        return  Number(a.salaryScale)>=Number(b.salaryScale) && a.id<=b.id && aSal<=bSal? -1:1;
       });
     }
     // 
@@ -175,11 +175,11 @@ class Salary extends Component {
     arr=this.props.staff.sort((a, b) => {
       if(this.state.filSalaryScale==1)
       {
-        return  Number(a.salaryScale)>Number(b.salaryScale)? -1:1;
+        return  Number(a.salaryScale)>=Number(b.salaryScale)? -1:1;
       }
       else
       {
-        return  Number(a.salaryScale)<Number(b.salaryScale)? -1:1;
+        return  Number(a.salaryScale)<=Number(b.salaryScale)? -1:1;
       }
     });
   }else if(this.state.filIdStaff!=0 && this.state.filSalaryScale==0 && this.state.fillSalary!=0)
@@ -189,20 +189,24 @@ class Salary extends Component {
       let bSal=Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
       if(this.state.filIdStaff==1 && this.state.fillSalary==1)
       {
-        return  a.id>b.id && aSal>bSal? -1:1;
+        return  a.id>b.id && aSal>=bSal? -1:1;
       }
       else if(this.state.filIdStaff==1 && this.state.fillSalary==2)
       {
-        return  a.id>b.id && aSal<bSal? -1:1;
+        return  a.id>b.id && aSal<=bSal? -1:1;
+      }
+      else if(this.state.filIdStaff==2 && this.state.fillSalary==2)
+      {
+        return  a.id<b.id && aSal<=bSal? -1:1;
       }
       else{
-        return  a.id<b.id && aSal>bSal? -1:1;
+        return  a.id<b.id && aSal>=bSal? -1:1;
       }
     })  
   }else{
     arr=this.props.staff.sort((a, b) => {
      
-        return  a.id<b.id?-1:1;
+        return  a.id<=b.id?-1:1;
     
     })  
   }
