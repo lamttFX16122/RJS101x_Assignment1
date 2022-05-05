@@ -3,12 +3,10 @@ import { Routes, Route,useParams } from "react-router-dom";
 import StaffList from "../components/StaffListComponent";
 import { DEPARTMENTS, ROLE, STAFFS } from "../share/staffs";
 import StaffInfo from "../components/StaffInfoComponent";
-import SetColumn from "../components/SetColumnComponent";
-import SearchStaff from "../components/SearchStaffComponent";
 import Header from "../components/HeaderComponent";
 import Footer from "../components/FooterComponent";
 import { Department } from "./DepartmentComponent";
-import { Salary } from "./SalaryComponent";
+import Salary from "./SalaryComponent";
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -16,24 +14,9 @@ class Main extends Component {
       listStaff: STAFFS,
       listDepartment:DEPARTMENTS,
       staffInfo: null,
-      // column: "col-lg-2 col-md-4 col-sm-6 col-6",
-      // txtFilter: null,
       isHide: true,
     };
   }
-
-  onReceiveCul = (col) => {
-    this.setState({
-      column: col,
-    });
-  };
-
-  // filterName = (text) => {
-  //   this.setState({
-  //     txtFilter: text,
-  //     isHide: false,
-  //   });
-  // };
 
   render() {
    
