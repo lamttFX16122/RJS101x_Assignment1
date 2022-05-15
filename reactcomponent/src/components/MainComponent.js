@@ -23,16 +23,16 @@ class Main extends Component {
       const params = useParams();
       return (
         <StaffInfo
-          // staff={
-          //   this.state.listStaff.filter(
-          //     (stf) => stf.id === parseInt(params.staffId)
-          //   )[0]
-          // }
-          // department={
-          //   this.state.listStaff.filter(
-          //     (stf) => stf.id === parseInt(params.staffId)
-          //   )[0].department.name
-          // }
+          staff={
+            this.state.listStaff.filter(
+              (stf) => stf.id === parseInt(params.staffId)
+            )[0]
+          }
+          department={
+            this.state.listStaff.filter(
+              (stf) => stf.id === parseInt(params.staffId)
+            )[0].department.name
+          }
         ></StaffInfo>
       );
     };

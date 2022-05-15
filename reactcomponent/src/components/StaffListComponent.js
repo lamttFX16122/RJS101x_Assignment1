@@ -158,9 +158,7 @@ class StaffList extends Component {
 
     return err;
   };
-  onClickStaff=(id)=>{
-    this.props.getStaffInfo(id);
-  }
+
   render() {
     let lstStaff = this.props.staffs;
     var err = this.validateForm();
@@ -178,7 +176,7 @@ class StaffList extends Component {
     let list = lstStaff.map((value) => {
       return (
         <div key={value.id} className="col-lg-2 col-md-4 col-sm-6 col-6">
-          <Link onClick={()=>this.onClickStaff(value.id)} to={`/staff/${value.id}`}>
+          <Link to={`/staff/${value.id}`}>
             <div className="card text-white bg-info cart-list">
               <div className="card-body">
                 <img
@@ -375,7 +373,6 @@ const mapStateToProps = (state) => {
     searchStaff: state.searchStaff,
     displayForm: state.displayForm,
     departments: state.departments,
-    staffDefault: state.staffDefault,
   };
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -391,9 +388,6 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     getStaffDefault: () => {
       dispatch(actions.getStaffDefault());
-    },
-    getStaffInfo:(id)=>{
-      dispatch(actions.getStaffInfo(id));
     }
   };
 };
