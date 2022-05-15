@@ -1,19 +1,33 @@
 import React, { Component } from "react";
 
 class SearchStaff extends Component {
-  onHandleSearch = (e) => {
-    this.props.onReceiveStaffName(e.target.value);
+  constructor(props) {
+    super(props);
+    this.txt_Search = React.createRef();
+  }
+  onClickSearch = () => {
+    this.props.onReceiveStaffName(this.txt_Search.current.value);
   };
   render() {
     return (
       <React.Fragment>
-          <label className="mr-1 ml-3">Filter</label>
-              <input
-                type="text"
-                onChange={this.onHandleSearch}
-                name="txtName"
-                placeholder="Tên nhân viên"
-              />
+        <div className="input-group">
+          <input
+            id="search-input"
+            type="search"
+            ref={this.txt_Search}
+            name="txt_Search"
+            className="form-control"
+          />
+          <button
+            onClick={this.onClickSearch}
+            id="search-button"
+            type="button"
+            className="btn btn-primary input-group-text"
+          >
+            <i className="fas fa-search"></i>
+          </button>
+        </div>
       </React.Fragment>
     );
   }

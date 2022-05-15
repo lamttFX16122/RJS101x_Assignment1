@@ -7,6 +7,7 @@ import Header from "../components/HeaderComponent";
 import Footer from "../components/FooterComponent";
 import { Department } from "./DepartmentComponent";
 import Salary from "./SalaryComponent";
+import moment from "moment";
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,37 @@ class Main extends Component {
       isHide: true,
     };
   }
-
+renderIdStaff = () => {
+    let id = this.state.listStaff.length;
+    while (id === this.state.listStaff.id) {
+        id++;
+    }
+    return id;
+}
+ findIndexId = (department, id) => {
+  let resultIndex = -1;
+  department.findIndex((value, index) => {
+      if (value.id === id) {
+          resultIndex = index;
+      }
+  });
+  return resultIndex;
+}
+  addStaff=(staff)=>{
+      staff.id = this.renderIdStaff();
+      staff.department = this.state.listDepartment[this.findIndexId(this.state.listDepartment,staff.department)];
+      staff.doB = moment(staff.doB).format();
+      staff.startDate = moment(staff.startDate).format();
+      staff.salaryScale = Number(staff.salaryScale);
+      staff.annualLeave = Number(staff.annualLeave);
+      staff.overTime = Number(staff.overTime);
+      staff.image = "/assets/images/alberto.png";
+      this.setState(prevState => ({
+        listStaff: [...prevState.listStaff, staff]
+  }))
+  console.log(this.state.listStaff);
+  
+  }
   render() {
     const ReStaffInfoy = () => {
       const params = useParams();
@@ -44,7 +75,7 @@ class Main extends Component {
           <Routes>
             <Route
               path="/"
-              element={<StaffList listStaff={this.state.listStaff}></StaffList>}
+              element={<StaffList listStaff={this.state.listStaff} departments={this.state.listDepartment} addStaff={this.addStaff}></StaffList>}
             ></Route>
             <Route
               exact
