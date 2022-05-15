@@ -38,9 +38,9 @@ class SetColumn extends Component {
       case "3":
         this.props.setCulumn("col-4");
         break;
-        case "4":
-          this.props.setCulumn("col-3");
-          break;
+      case "4":
+        this.props.setCulumn("col-3");
+        break;
       default:
         this.props.setCulumn("col-lg-2 col-md-4 col-sm-6 col-6");
         break;
@@ -48,19 +48,19 @@ class SetColumn extends Component {
   };
   render() {
     return (
-        <React.Fragment>
-          <label className="mr-1 ml-3">Hiển thị</label>
-          <select
-            name="column"
-            value={this.state.column}
-            onChange={this.HandleChange}
-          >
-            <option value={0}>Mặc định</option>
-            <option value={1}>1 cột</option>
-            <option value={2}>2 cột</option>
-            <option value={3}>3 cột</option>
-            <option value={4}>4 cột</option>
-          </select>
+      <React.Fragment>
+        <label className="mr-1 ml-3">Hiển thị</label>
+        <select
+          name="column"
+          value={this.state.column}
+          onChange={this.HandleChange}
+        >
+          <option value={0}>Mặc định</option>
+          <option value={1}>1 cột</option>
+          <option value={2}>2 cột</option>
+          <option value={3}>3 cột</option>
+          <option value={4}>4 cột</option>
+        </select>
       </React.Fragment>
     );
   }

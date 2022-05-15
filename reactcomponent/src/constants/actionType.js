@@ -1,0 +1,7 @@
+export const LIST_ALL = "LIST_ALL";
+export const SEARCH_STAFF = "SEARCH_STAFF";
+export const TOGGLE_FORM_ADDSTAFF = "TOGGLE_FORM_ADDSTAFF";
+export const DEPARTMENTS_LIST = "DEPARTMENTS_LIST";
+export const ADD_STAFF = "ADD_STAFF";
+export const STAFF_DEFAULT = "STAFF_DEFAULT";
+export const STAFF_INFOR = "STAFF_INFOR";
