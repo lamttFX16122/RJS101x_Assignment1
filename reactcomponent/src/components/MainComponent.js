@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Routes, Route, useParams } from "react-router-dom";
-import StaffList from "../components/StaffListComponent";
+// import StaffList from "../components/StaffListComponent";
+import StaffList_redux_form from "../components/StaffListComponent_redux_form";
 import { DEPARTMENTS, ROLE, STAFFS } from "../share/staffs";
 import StaffInfo from "../components/StaffInfoComponent";
 import Header from "../components/HeaderComponent";
 import Footer from "../components/FooterComponent";
 import { Department } from "./DepartmentComponent";
 import Salary from "./SalaryComponent";
-import * as actions from "./../actions/actionIndex";
-import {connect} from "react-redux";
+// import * as actions from "./../actions/actionIndex";
+// import {connect} from "react-redux";
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +36,8 @@ class Main extends Component {
           <Routes>
             <Route
               path="/"
-              element={<StaffList></StaffList>}
+              // element={<StaffList></StaffList>}
+              element={<StaffList_redux_form></StaffList_redux_form>}
             ></Route>
             <Route
               exact
