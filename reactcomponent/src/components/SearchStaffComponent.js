@@ -4,19 +4,8 @@ import * as actions from "./../actions/actionIndex";
 class SearchStaff extends Component {
   constructor(props){
     super(props);
-    this.state={
-      txt_Search: ''
-    };
     this.txt_Search = React.createRef();
   }
-  // onChange=(e)=>{
-  //   const target=e.target;
-  //   const name=target.name;
-  //   const value=target.value;
-  //   this.setState({
-  //     [name]: value
-  //   })
-  // }
   onClickSearch = () => {
       this.props.onSearch(this.txt_Search.current.value)
   };

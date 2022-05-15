@@ -29,7 +29,6 @@ function RenderStaff({ staff }) {
 const StaffInfo = (props) => {
   const params = useParams();
   props.getStaff(Number(params.staffId));
-  console.log(props.staffInfo);
   if (props.staffInfo != null) {
     return (
       <div className="mb-5">
