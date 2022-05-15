@@ -1,4 +1,3 @@
-import StaffListComponent from "../components/StaffListComponent";
 import * as types from "../constants/actionType";
 import { DEPARTMENTS, ROLE, STAFFS } from "./../share/staffs";
 import moment from "moment";
@@ -26,7 +25,7 @@ var myReducer = (state = initialState, action) => {
             return state;
         case types.ADD_STAFF:
             action.staff.id = renderIdStaff();
-            action.staff.deparment = "DEPARTMENTS[" + findIndexId(DEPARTMENTS, action.staff.department) + "]";
+            action.staff.department = DEPARTMENTS[findIndexId(DEPARTMENTS, action.staff.department)];
             action.staff.doB = moment(action.staff.doB).format();
             action.staff.startDate = moment(action.staff.startDate).format();
             action.staff.salaryScale = Number(action.staff.salaryScale);

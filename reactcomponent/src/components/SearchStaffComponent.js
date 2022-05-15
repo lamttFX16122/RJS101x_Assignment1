@@ -6,30 +6,28 @@ class SearchStaff extends Component {
     super(props);
     this.state={
       txt_Search: ''
-    }
+    };
+    this.txt_Search = React.createRef();
   }
-  onChange=(e)=>{
-    const target=e.target;
-    const name=target.name;
-    const value=target.value;
-    this.setState({
-      [name]: value
-    })
-  }
+  // onChange=(e)=>{
+  //   const target=e.target;
+  //   const name=target.name;
+  //   const value=target.value;
+  //   this.setState({
+  //     [name]: value
+  //   })
+  // }
   onClickSearch = () => {
-    // console.log(this.state.txt_Search)
-     this.props.onSearch(this.state.txt_Search)
+      this.props.onSearch(this.txt_Search.current.value)
   };
   render() {
     return (
       <React.Fragment>
-        <div className="input-group">
-          <div className="form-outline">
-            <input id="search-input" type="search" name="txt_Search" className="form-control" onChange={this.onChange}/>
-          </div>
-          <button onClick={this.onClickSearch} id="search-button" type="button" className="btn btn-primary">
-            <i className="fas fa-search"></i>
-          </button>
+       <div className="input-group"> 
+            <input id="search-input" type="search" ref={this.txt_Search}  name="txt_Search" className="form-control" onChange={this.onChange}/>
+          <button onClick={this.onClickSearch} id="search-button" type="button" className="btn btn-primary input-group-text">
+           <i className="fas fa-search"></i>
+          </button>        
         </div>
       </React.Fragment>
     );

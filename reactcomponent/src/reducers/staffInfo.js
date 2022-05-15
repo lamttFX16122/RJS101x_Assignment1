@@ -14,7 +14,7 @@ var myReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.STAFF_INFOR:
             const index = findIndexId(STAFFS, action.id);
-            console.log("sss", STAFFS[index]);
+            STAFFS[index].departmentName = STAFFS[index].department.name
             return STAFFS[index];
         default:
             return state;

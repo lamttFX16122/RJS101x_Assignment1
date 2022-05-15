@@ -63,8 +63,6 @@ class StaffList extends Component {
       overTime: this.state.overTime,
     };
     this.props.getStaffDefault();
-    console.log("NEW", staff);
-    console.log("default", this.props.staffDefault);
     if (
       JSON.stringify(staff) === JSON.stringify(this.props.staffDefault) ||
       Object.keys(this.validateForm()).length !== 0
@@ -216,7 +214,7 @@ class StaffList extends Component {
             </nav>
           </div>
 
-          <div className="col-lg-2 col-md-2 col-sm-2 col-2">
+          <div className="col-lg-2 col-md-2 col-sm-2 col-2 text-center">
             <button
               onClick={this.toggleOnclick}
               type="button"
@@ -345,10 +343,11 @@ class StaffList extends Component {
           </div>
 
           <div className="col-lg-5 col-md-5 col-sm-5 col-12">
-            <SearchStaff></SearchStaff>
+           <div className="row">
+             <SearchStaff></SearchStaff>
+           </div>
           </div>
         </div>
-
         {list.length > 0 ? (
           <React.Fragment>
             <div className="row m-2">{list}</div>

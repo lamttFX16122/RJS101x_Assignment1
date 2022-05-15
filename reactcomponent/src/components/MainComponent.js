@@ -7,6 +7,8 @@ import Header from "../components/HeaderComponent";
 import Footer from "../components/FooterComponent";
 import { Department } from "./DepartmentComponent";
 import Salary from "./SalaryComponent";
+import * as actions from "./../actions/actionIndex";
+import {connect} from "react-redux";
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -22,18 +24,7 @@ class Main extends Component {
     const ReStaffInfoy = () => {
       const params = useParams();
       return (
-        <StaffInfo
-          staff={
-            this.state.listStaff.filter(
-              (stf) => stf.id === parseInt(params.staffId)
-            )[0]
-          }
-          department={
-            this.state.listStaff.filter(
-              (stf) => stf.id === parseInt(params.staffId)
-            )[0].department.name
-          }
-        ></StaffInfo>
+        <StaffInfo></StaffInfo>
       );
     };
 
@@ -69,5 +60,17 @@ class Main extends Component {
     );
   }
 }
-
+// const mapStateToProps = (state) => {
+//   return {
+//     staffInfo:state.staffInfo
+//   }
+// }
+// const mapDispatchToProps = (dispatch,props) => {
+//   return {
+//     getStaff: (id) => {
+//       dispatch(actions.getStaffInfo(id))
+//     }
+//   }
+// }
+// export default connect(mapStateToProps,mapDispatchToProps)(Main);
 export default Main;
