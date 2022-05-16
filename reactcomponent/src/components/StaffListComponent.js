@@ -52,7 +52,6 @@ class StaffList extends Component {
   };
   onSubmitForm = (e) => {
     e.preventDefault();
-
     const staff = {
       name: this.state.name,
       doB: this.state.doB,

@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+ import { Button, Modal, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SetColumn from "./SetColumnComponent";
 import SearchStaff from "./SearchStaffComponent";
 import * as actions from "./../actions/actionIndex";
 import { connect } from "react-redux";
 import moment from "moment";
-class StaffList_redux_form extends Component {
+import DateTimePicker from 'react-datetime-picker';
+import {LocalForm,Control, Errors} from "react-redux-form";
+
+class StaffList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,6 +31,15 @@ class StaffList_redux_form extends Component {
       },
     };
   }
+
+
+
+
+  handleChange(values) {  }
+  handleUpdate(form) {  }
+  handleSubmit=(staff)=> {
+      console.log(staff)
+   }
   staffClick = (value) => {
     this.props.onReceiveStaff(value);
   };
@@ -42,49 +54,49 @@ class StaffList_redux_form extends Component {
     this.props.getListDepartment();
     this.props.onHandleButtonToggle();
   };
-  onFormChange = (e) => {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
-    this.setState({
-      [name]: value,
-    });
-  };
-  onSubmitForm = (e) => {
-    e.preventDefault();
+//   onFormChange = (e) => {
+//     let target = e.target;
+//     let name = target.name;
+//     let value = target.value;
+//     this.setState({
+//       [name]: value,
+//     });
+//   };
+//   onSubmitForm = (e) => {
+//     e.preventDefault();
 
-    const staff = {
-      name: this.state.name,
-      doB: this.state.doB,
-      salaryScale: this.state.salaryScale,
-      startDate: this.state.startDate,
-      department: this.state.department,
-      annualLeave: this.state.annualLeave,
-      overTime: this.state.overTime,
-    };
-    this.props.getStaffDefault();
-    if (
-      JSON.stringify(staff) === JSON.stringify(this.props.staffDefault) ||
-      Object.keys(this.validateForm()).length !== 0
-    ) {
-      this.setState({
-        touched: {
-          name: true,
-          doB: true,
-          salaryScale: true,
-          startDate: true,
-          annualLeave: true,
-          overTime: true,
-        },
-      });
-      e.preventDefault();
-      return;
-    } else {
-      e.preventDefault();
-      this.props.addStaff(staff);
-      this.props.onHandleButtonToggle();
-    }
-  };
+//     const staff = {
+//       name: this.state.name,
+//       doB: this.state.doB,
+//       salaryScale: this.state.salaryScale,
+//       startDate: this.state.startDate,
+//       department: this.state.department,
+//       annualLeave: this.state.annualLeave,
+//       overTime: this.state.overTime,
+//     };
+//     this.props.getStaffDefault();
+//     if (
+//       JSON.stringify(staff) === JSON.stringify(this.props.staffDefault) ||
+//       Object.keys(this.validateForm()).length !== 0
+//     ) {
+//       this.setState({
+//         touched: {
+//           name: true,
+//           doB: true,
+//           salaryScale: true,
+//           startDate: true,
+//           annualLeave: true,
+//           overTime: true,
+//         },
+//       });
+//       e.preventDefault();
+//       return;
+//     } else {
+//       e.preventDefault();
+//       this.props.addStaff(staff);
+//       this.props.onHandleButtonToggle();
+//     }
+//   };
 
   onBlur = (field) => (e) => {
     this.setState({
@@ -158,8 +170,20 @@ class StaffList_redux_form extends Component {
   };
 
   render() {
+    const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>
+    <DateTimePicker
+      onChange={onChange}
+      format="DD MMM YYYY"
+      time={showTime}
+      value={!value ? null : new Date(value)}
+    />    
+
+      const required=(val)=>(val)&&(val.length);
+      const maxLength=(len)=>(val)=>(!val)||(val.length<=len)
+      const minLength=(len)=>(val)=>(val)&&(val.length>=len)
+      const isNum=(val)=>(!isNaN(Number(val)));
     let lstStaff = this.props.staffs;
-    var err = this.validateForm();
+    // var err = this.validateForm();
     const { searchStaff } = this.props;
     if (!searchStaff == null || !searchStaff == "") {
       lstStaff = lstStaff.filter((value) => {
@@ -231,113 +255,114 @@ class StaffList_redux_form extends Component {
                 <Modal.Title>Thêm nhân viên</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <Form onSubmit={this.onSubmitForm} noValidate>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Tên</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Tên"
-                      name="name"
-                      value={this.state.name}
-                      onChange={this.onFormChange}
-                      onBlur={this.onBlur("name")}
-                      isInvalid={!!err.name}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {err.name}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Ngày sinh</Form.Label>
-                    <Form.Control
-                      type="date"
-                      name="doB"
-                      value={this.state.doB}
-                      onChange={this.onFormChange}
-                      onBlur={this.onBlur("doB")}
-                      isInvalid={!!err.doB}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {err.doB}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Ngày vào công ty</Form.Label>
-                    <Form.Control
-                      type="date"
-                      name="startDate"
-                      value={this.state.startDate}
-                      onChange={this.onFormChange}
-                      onBlur={this.onBlur("startDate")}
-                      isInvalid={!!err.startDate}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {err.startDate}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Phòng ban</Form.Label>
-                    <Form.Control
-                      as="select"
-                      placeholder="Tên"
-                      name="department"
-                      value={this.state.department}
-                      onChange={this.onFormChange}
-                      aria-label="Default select example"
-                    >
-                      {optionDepart}
-                    </Form.Control>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3">
-                    <Form.Label>Hệ số lương</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Hệ số lương"
-                      name="salaryScale"
-                      value={this.state.salaryScale}
-                      onChange={this.onFormChange}
-                      onBlur={this.onBlur("salaryScale")}
-                      isInvalid={!!err.salaryScale}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {err.salaryScale}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Số ngày nghỉ còn lại</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Số ngày nghỉ còn lại"
-                      name="annualLeave"
-                      value={this.state.annualLeave}
-                      onChange={this.onFormChange}
-                      onBlur={this.onBlur("annualLeave")}
-                      isInvalid={!!err.annualLeave}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {err.annualLeave}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Số ngày đã làm thêm</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Số ngày đã làm thêm"
-                      name="overTime"
-                      value={this.state.overTime}
-                      onChange={this.onFormChange}
-                      onBlur={this.onBlur("overTime")}
-                      isInvalid={!!err.overTime}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {err.overTime}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Button variant="primary" type="submit">
+                <LocalForm model="staff"
+                    onSubmit={(staff) => this.handleSubmit(staff)}
+                >
+                    <div className="mb-3">
+                        <label className="form-lable">Tên</label>
+                        <Control.text className="form-control" model='.name'
+                            validators={{
+                                required,
+                                minLength: minLength(3),
+                                maxLength:maxLength(30)
+                            }}
+                        />
+                    </div>
+                    <Errors className="text-danger"
+                        model=".name"
+                        show="touched"
+                        messages={{
+                        required:"Yêu cầu nhập | ",
+                        minLength:"Yêu cầu nhiều hơn 2 ký tự | ",
+                        maxLength:"Yêu cầu ít hơn 30 ký tự"
+                  }}    
+               />
+                    <div className="mb-3">
+                        <label className="form-lable">Ngày sinh</label>
+                        {/* <Control.text className="form-control"  model='.startDate'
+                            validators={{
+                                required
+                            }}
+                            
+                        /> */}
+                        <Control model="doB" component={DateTimePicker}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-lable">Ngày vào công ty</label>
+                        <Control.text className="form-control"  model='.startDate'
+                            validators={{
+                                required
+                            }}
+                        />
+                    </div>
+                    <Errors className="text-danger"
+                            model=".startDate"
+                            show="touched"
+                            messages={{
+                                required:"Yêu cầu nhập"
+                            }}
+                        />
+                    <div className="mb-3">
+                        <label className="form-lable">Phòng ban</label>
+                        <Control.select className="form-control" model='.department'>
+                            {optionDepart}
+                        </Control.select>
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-lable">Hệ số lương</label>
+                        <Control.text className="form-control"  model='.salaryScale'
+                         validators={{
+                            required,
+                            isNum
+                        }}
+                        />
+                    </div>
+                    <Errors className="text-danger"
+                        model=".salaryScale"
+                        show="touched"
+                        messages={{
+                        required:"Yêu cầu nhập | ",
+                        isNum:"Yêu cầu phải là số"
+                  }}    
+               />
+                    <div className="mb-3">
+                        <label className="form-lable">Số ngày nghỉ còn lại</label>
+                        <Control.text className="form-control"  model='.annualLeave'
+                         validators={{
+                            required,
+                            isNum
+                        }}
+                        />
+                    </div>
+                    <Errors className="text-danger"
+                        model=".annualLeave"
+                        show="touched"
+                        messages={{
+                        required:"Yêu cầu nhập | ",
+                        isNum:"Yêu cầu phải là số"
+                  }}    
+               />
+                    <div className="mb-3">
+                        <label className="form-lable">Số ngày đã làm thêm</label>
+                        <Control.text className="form-control" model='.overTime'
+                          validators={{
+                            required,
+                            isNum
+                        }}
+                        />
+                    </div>
+                    <Errors className="text-danger"
+                        model=".overTime"
+                        show="touched"
+                        messages={{
+                        required:"Yêu cầu nhập | ",
+                        isNum:"Yêu cầu phải là số"
+                  }}    
+               />
+                    <Button variant="primary" type="submit">
                     Thêm
                   </Button>
-                </Form>
+            </LocalForm>
               </Modal.Body>
             </Modal>
           </div>
@@ -390,4 +415,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(StaffList_redux_form);
+export default connect(mapStateToProps, mapDispatchToProps)(StaffList);
