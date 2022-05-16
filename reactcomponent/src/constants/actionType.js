@@ -5,3 +5,4 @@ export const DEPARTMENTS_LIST = "DEPARTMENTS_LIST";
 export const ADD_STAFF = "ADD_STAFF";
 export const STAFF_DEFAULT = "STAFF_DEFAULT";
 export const STAFF_INFOR = "STAFF_INFOR";
+export const INITIAL_FORM = "INITIAL_FORM";

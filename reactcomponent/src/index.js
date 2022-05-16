@@ -6,9 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import '@fortawesome/fontawesome-free/js/all.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {createStore} from "redux";
-import myReducer from './reducers/reducerIndex';
+import {myReducer} from './reducers/reducerIndex';
 import { Provider } from 'react-redux';
-const store=createStore(myReducer);
+
+const store=createStore(myReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
@@ -17,9 +18,9 @@ root.render(
   //   </Provider>
   // </React.StrictMode>
   <div>
-<Provider store={store}>
-  <App />
-  </Provider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </div>
   
 

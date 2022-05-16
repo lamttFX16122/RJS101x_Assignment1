@@ -36,3 +36,8 @@ export const getStaffInfo = (id) => {
         id
     }
 }
+export const InitialForm = () => {
+    return {
+        type: types.INITIAL_FORM
+    }
+}

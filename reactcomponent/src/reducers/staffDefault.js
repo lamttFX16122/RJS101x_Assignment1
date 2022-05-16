@@ -14,6 +14,8 @@ var myReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.STAFF_DEFAULT:
             return state;
+        case types.INITIAL_FORM:
+            return state;
         default:
             return state;
     }
