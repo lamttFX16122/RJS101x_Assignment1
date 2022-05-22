@@ -12,5 +12,4 @@ export var myReducer = combineReducers({
     departments,
     staffDefault,
     staffInfo,
-
 });
