@@ -5,11 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '@fortawesome/fontawesome-free/js/all.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import {myReducer} from './reducers/reducerIndex';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import logger from "redux-logger";
 
-const store=createStore(myReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store=createStore(myReducer, applyMiddleware(thunk, logger)); //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>

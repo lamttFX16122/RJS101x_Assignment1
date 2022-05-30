@@ -1,15 +1,4 @@
 import * as types from "../constants/actionType";
-import { DEPARTMENTS, ROLE, STAFFS } from "./../share/staffs";
-import moment from "moment";
-import { type } from "@testing-library/user-event/dist/type";
-var initialState = STAFFS;
-const renderIdStaff = () => {
-    let id = STAFFS.length;
-    while (id === STAFFS.id) {
-        id++;
-    }
-    return id;
-}
 const findIndexId = (department, id) => {
     let resultIndex = -1;
     department.findIndex((value, index) => {
@@ -19,22 +8,26 @@ const findIndexId = (department, id) => {
     });
     return resultIndex;
 }
-var myReducer = (state = initialState, action) => {
+var myReducer = (state = { isLoading: true, isError: null, staffs: [] }, action) => {
     switch (action.type) {
-        case types.LIST_ALL:
-            return state;
-        case types.ADD_STAFF:
-            action.staff.id = renderIdStaff();
-            action.staff.department = DEPARTMENTS[findIndexId(DEPARTMENTS, action.staff.department)];
-            action.staff.doB = moment(action.staff.doB).format();
-            action.staff.startDate = moment(action.staff.startDate).format();
-            action.staff.salaryScale = Number(action.staff.salaryScale);
-            action.staff.annualLeave = Number(action.staff.annualLeave);
-            action.staff.overTime = Number(action.staff.overTime);
-            action.staff.image = "/assets/images/alberto.png";
-            STAFFS.push(action.staff);
-            return state;
-
+        case types.STAFF_LOADING:
+            return {
+                ...state,
+                isLoading: true,
+                staffs: []
+            }
+        case types.ADD_LIST_STAFFS:
+            return {
+                ...state,
+                isLoading: false,
+                staffs: action.payload
+            }
+        case types.STAFF_FAILED:
+            return {
+                ...state,
+                isLoading: false,
+                isError: action.payload
+            }
         default:
             return state;
     }

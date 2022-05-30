@@ -1,4 +1,3 @@
-export const LIST_ALL = "LIST_ALL";
 export const SEARCH_STAFF = "SEARCH_STAFF";
 export const TOGGLE_FORM_ADDSTAFF = "TOGGLE_FORM_ADDSTAFF";
 export const DEPARTMENTS_LIST = "DEPARTMENTS_LIST";
@@ -6,3 +5,24 @@ export const ADD_STAFF = "ADD_STAFF";
 export const STAFF_DEFAULT = "STAFF_DEFAULT";
 export const STAFF_INFOR = "STAFF_INFOR";
 export const INITIAL_FORM = "INITIAL_FORM";
+
+// Staff LIST
+
+export const ADD_LIST_STAFFS = "ADD_LIST_STAFFS";
+export const STAFF_LOADING = "STAFF_LOADING";
+export const STAFF_FAILED = "STAFF_FAILED";
+export const UPDATE_STAFF = "UPDATE_STAFF";
+export const DELETE_STAFF = "DELETE_STAFF";
+
+//Department
+
+export const ADD_LIST_DEPARTMENTS = "ADD_LIST_DEPARTMENTS";
+export const DEPARTMENT_LOADING = "DEPARTMENT_LOADING";
+export const DEPARTMENT_FAILED = "DEPARTMENT_FAILED";
+export const GET_STAFFS_DEPARTMENT = "GET_STAFFS_DEPARTMENT";
+
+// Salary
+
+export const SALARY_LOADING = "SALARY_LOADING";
+export const SALARY_FAILED = "SALARY_FAILED";
+export const ADD_SALARYS = "ADD_SALARYS";

@@ -1,310 +1,324 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux';
+import * as actions from "./../actions/actionIndex";
+import { Loading } from "./LoadingComponent";
+import ErrorFetch from "./ErrorComponent";
 
 class Salary extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      filSalaryScale: 0,
-      filIdStaff: 0,
-      fillSalary: 0,
-    };
-    this.HandleIDChange = this.HandleIDChange.bind(this);
-    this.HandleSalChange = this.HandleSalChange.bind(this);
-    this.HandleSalScale = this.HandleSalScale.bind(this);
-  }
-  HandleIDChange(e) {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
-    this.setState({
-      filIdStaff: value,
-    });
-  }
-  HandleSalChange(e) {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
-    this.setState({
-      fillSalary: value,
-    });
-  }
-  HandleSalScale(e) {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
-    this.setState({
-      filSalaryScale: value,
-    });
-  }
-  render() {
-    let arr = null;
+     this.state = {
+    
+     };
 
-    if (
-      this.state.filIdStaff == 0 &&
-      this.state.filSalaryScale != 0 &&
-      this.state.fillSalary != 0
-    ) {
-      arr = this.props.staff.sort((a, b) => {
-        let aSal =
-          Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-        let bSal =
-          Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        if (this.state.filSalaryScale == 1 && this.state.fillSalary == 1) {
-          return Number(a.salaryScale) >= Number(b.salaryScale) && aSal >= bSal
-            ? -1
-            : 1;
-        } else if (
-          this.state.filSalaryScale == 1 &&
-          this.state.fillSalary == 2
-        ) {
-          return Number(a.salaryScale) >= Number(b.salaryScale) && aSal <= bSal
-            ? -1
-            : 1;
-        } else if (
-          this.state.filSalaryScale == 1 &&
-          this.state.fillSalary == 2
-        ) {
-          return Number(a.salaryScale) <= Number(b.salaryScale) && aSal <= bSal
-            ? -1
-            : 1;
-        } else {
-          return Number(a.salaryScale) <= Number(b.salaryScale) && aSal >= bSal
-            ? -1
-            : 1;
-        }
-      });
-    } else if (
-      this.state.filIdStaff == 0 &&
-      this.state.filSalaryScale == 0 &&
-      this.state.fillSalary != 0
-    ) {
-      arr = this.props.staff.sort((a, b) => {
-        let aSal =
-          Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-        let bSal =
-          Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        if (this.state.fillSalary == 1) {
-          return aSal >= bSal ? -1 : 1;
-        } else {
-          return aSal <= bSal ? -1 : 1;
-        }
-      });
-    } else if (
-      this.state.filIdStaff != 0 &&
-      this.state.filSalaryScale == 0 &&
-      this.state.fillSalary == 0
-    ) {
-      arr = this.props.staff.sort((a, b) => {
-        if (this.state.filIdStaff == 1) {
-          return a.id >= b.id ? -1 : 1;
-        } else {
-          return a.id <= b.id ? -1 : 1;
-        }
-      });
-    } else if (
-      this.state.filIdStaff != 0 &&
-      this.state.filSalaryScale != 0 &&
-      this.state.fillSalary == 0
-    ) {
-      arr = this.props.staff.sort((a, b) => {
-        if (this.state.filSalaryScale == 1 && this.state.filIdStaff == 1) {
-          return Number(a.salaryScale) >= Number(b.salaryScale) && a.id > b.id
-            ? -1
-            : 1;
-        } else if (
-          this.state.filSalaryScale == 1 &&
-          this.state.filIdStaff == 2
-        ) {
-          return Number(a.salaryScale) >= Number(b.salaryScale) && a.id < b.id
-            ? -1
-            : 1;
-        } else if (
-          this.state.filSalaryScale == 2 &&
-          this.state.filIdStaff == 2
-        ) {
-          return Number(a.salaryScale) <= Number(b.salaryScale) && a.id < b.id
-            ? -1
-            : 1;
-        } else {
-          return Number(a.salaryScale) <= Number(b.salaryScale) && a.id > b.id
-            ? -1
-            : 1;
-        }
-      });
-    } else if (
-      this.state.filIdStaff != 0 &&
-      this.state.filSalaryScale != 0 &&
-      this.state.fillSalary != 0
-    ) {
-      if (
-        this.state.filIdStaff == 1 &&
-        this.state.filSalaryScale == 1 &&
-        this.state.fillSalary == 1
-      ) {
-        arr = this.props.staff.sort((a, b) => {
-          let aSal =
-            Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-          let bSal =
-            Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-          return Number(a.salaryScale) >= Number(b.salaryScale) &&
-            a.id >= b.id &&
-            aSal >= bSal
-            ? -1
-            : 1;
-        });
-      } else if (
-        this.state.filIdStaff == 1 &&
-        this.state.filSalaryScale == 2 &&
-        this.state.fillSalary == 1
-      ) {
-        arr = this.props.staff.sort((a, b) => {
-          let aSal =
-            Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-          let bSal =
-            Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-          return Number(a.salaryScale) <= Number(b.salaryScale) &&
-            a.id >= b.id &&
-            aSal >= bSal
-            ? -1
-            : 1;
-        });
-      } else if (
-        this.state.filIdStaff == 1 &&
-        this.state.filSalaryScale == 1 &&
-        this.state.fillSalary == 2
-      ) {
-        arr = this.props.staff.sort((a, b) => {
-          let aSal =
-            Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-          let bSal =
-            Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-          return Number(a.salaryScale) >= Number(b.salaryScale) &&
-            a.id >= b.id &&
-            aSal <= bSal
-            ? -1
-            : 1;
-        });
-      } else if (
-        this.state.filIdStaff == 1 &&
-        this.state.filSalaryScale == 2 &&
-        this.state.fillSalary == 2
-      ) {
-        arr = this.props.staff.sort((a, b) => {
-          let aSal =
-            Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-          let bSal =
-            Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-          return Number(a.salaryScale) <= Number(b.salaryScale) &&
-            a.id >= b.id &&
-            aSal <= bSal
-            ? -1
-            : 1;
-        });
-      } else if (
-        this.state.filIdStaff == 2 &&
-        this.state.filSalaryScale == 1 &&
-        this.state.fillSalary == 1
-      ) {
-        arr = this.props.staff.sort((a, b) => {
-          let aSal =
-            Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-          let bSal =
-            Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-          return Number(a.salaryScale) >= Number(b.salaryScale) &&
-            a.id <= b.id &&
-            aSal >= bSal
-            ? -1
-            : 1;
-        });
-      } else if (
-        this.state.filIdStaff == 2 &&
-        this.state.filSalaryScale == 2 &&
-        this.state.fillSalary == 1
-      ) {
-        arr = this.props.staff.sort((a, b) => {
-          let aSal =
-            Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-          let bSal =
-            Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-          return Number(a.salaryScale) <= Number(b.salaryScale) &&
-            a.id <= b.id &&
-            aSal >= bSal
-            ? -1
-            : 1;
-        });
-      } else if (
-        this.state.filIdStaff == 2 &&
-        this.state.filSalaryScale == 2 &&
-        this.state.fillSalary == 2
-      ) {
-        arr = this.props.staff.sort((a, b) => {
-          let aSal =
-            Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-          let bSal =
-            Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-          return Number(a.salaryScale) <= Number(b.salaryScale) &&
-            a.id <= b.id &&
-            aSal <= bSal
-            ? -1
-            : 1;
-        });
-      } else if (
-        this.state.filIdStaff == 2 &&
-        this.state.filSalaryScale == 1 &&
-        this.state.fillSalary == 2
-      ) {
-        arr = this.props.staff.sort((a, b) => {
-          let aSal =
-            Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-          let bSal =
-            Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-          return Number(a.salaryScale) >= Number(b.salaryScale) &&
-            a.id <= b.id &&
-            aSal <= bSal
-            ? -1
-            : 1;
-        });
-      }
-      //
-    } else if (
-      this.state.filIdStaff == 0 &&
-      this.state.filSalaryScale != 0 &&
-      this.state.fillSalary == 0
-    ) {
-      arr = this.props.staff.sort((a, b) => {
-        if (this.state.filSalaryScale == 1) {
-          return Number(a.salaryScale) >= Number(b.salaryScale) ? -1 : 1;
-        } else {
-          return Number(a.salaryScale) <= Number(b.salaryScale) ? -1 : 1;
-        }
-      });
-    } else if (
-      this.state.filIdStaff != 0 &&
-      this.state.filSalaryScale == 0 &&
-      this.state.fillSalary != 0
-    ) {
-      arr = this.props.staff.sort((a, b) => {
-        let aSal =
-          Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
-        let bSal =
-          Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
-        if (this.state.filIdStaff == 1 && this.state.fillSalary == 1) {
-          return a.id > b.id && aSal >= bSal ? -1 : 1;
-        } else if (this.state.filIdStaff == 1 && this.state.fillSalary == 2) {
-          return a.id > b.id && aSal <= bSal ? -1 : 1;
-        } else if (this.state.filIdStaff == 2 && this.state.fillSalary == 2) {
-          return a.id < b.id && aSal <= bSal ? -1 : 1;
-        } else {
-          return a.id < b.id && aSal >= bSal ? -1 : 1;
-        }
-      });
-    } else {
-      arr = this.props.staff.sort((a, b) => {
-        return a.id <= b.id ? -1 : 1;
-      });
-    }
-    const sal = arr.map((value) => {
+  }
+
+  componentDidMount(){
+    this.props.fetchSalary();
+  }
+  // HandleIDChange(e) {
+  //   let target = e.target;
+  //   let name = target.name;
+  //   let value = target.value;
+  //   this.setState({
+  //     filIdStaff: value,
+  //   });
+  // }
+  // HandleSalChange(e) {
+  //   let target = e.target;
+  //   let name = target.name;
+  //   let value = target.value;
+  //   this.setState({
+  //     fillSalary: value,
+  //   });
+  // }
+  // HandleSalScale(e) {
+  //   let target = e.target;
+  //   let name = target.name;
+  //   let value = target.value;
+  //   this.setState({
+  //     filSalaryScale: value,
+  //   });
+  // }
+  render() {
+
+    // if (
+    //   this.state.filIdStaff == 0 &&
+    //   this.state.filSalaryScale != 0 &&
+    //   this.state.fillSalary != 0
+    // ) {
+    //   arr = this.props.staff.sort((a, b) => {
+    //     let aSal =
+    //       Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //     let bSal =
+    //       Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //     if (this.state.filSalaryScale == 1 && this.state.fillSalary == 1) {
+    //       return Number(a.salaryScale) >= Number(b.salaryScale) && aSal >= bSal
+    //         ? -1
+    //         : 1;
+    //     } else if (
+    //       this.state.filSalaryScale == 1 &&
+    //       this.state.fillSalary == 2
+    //     ) {
+    //       return Number(a.salaryScale) >= Number(b.salaryScale) && aSal <= bSal
+    //         ? -1
+    //         : 1;
+    //     } else if (
+    //       this.state.filSalaryScale == 1 &&
+    //       this.state.fillSalary == 2
+    //     ) {
+    //       return Number(a.salaryScale) <= Number(b.salaryScale) && aSal <= bSal
+    //         ? -1
+    //         : 1;
+    //     } else {
+    //       return Number(a.salaryScale) <= Number(b.salaryScale) && aSal >= bSal
+    //         ? -1
+    //         : 1;
+    //     }
+    //   });
+    // } else if (
+    //   this.state.filIdStaff == 0 &&
+    //   this.state.filSalaryScale == 0 &&
+    //   this.state.fillSalary != 0
+    // ) {
+    //   arr = this.props.staff.sort((a, b) => {
+    //     let aSal =
+    //       Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //     let bSal =
+    //       Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //     if (this.state.fillSalary == 1) {
+    //       return aSal >= bSal ? -1 : 1;
+    //     } else {
+    //       return aSal <= bSal ? -1 : 1;
+    //     }
+    //   });
+    // } else if (
+    //   this.state.filIdStaff != 0 &&
+    //   this.state.filSalaryScale == 0 &&
+    //   this.state.fillSalary == 0
+    // ) {
+    //   arr = this.props.staff.sort((a, b) => {
+    //     if (this.state.filIdStaff == 1) {
+    //       return a.id >= b.id ? -1 : 1;
+    //     } else {
+    //       return a.id <= b.id ? -1 : 1;
+    //     }
+    //   });
+    // } else if (
+    //   this.state.filIdStaff != 0 &&
+    //   this.state.filSalaryScale != 0 &&
+    //   this.state.fillSalary == 0
+    // ) {
+    //   arr = this.props.staff.sort((a, b) => {
+    //     if (this.state.filSalaryScale == 1 && this.state.filIdStaff == 1) {
+    //       return Number(a.salaryScale) >= Number(b.salaryScale) && a.id > b.id
+    //         ? -1
+    //         : 1;
+    //     } else if (
+    //       this.state.filSalaryScale == 1 &&
+    //       this.state.filIdStaff == 2
+    //     ) {
+    //       return Number(a.salaryScale) >= Number(b.salaryScale) && a.id < b.id
+    //         ? -1
+    //         : 1;
+    //     } else if (
+    //       this.state.filSalaryScale == 2 &&
+    //       this.state.filIdStaff == 2
+    //     ) {
+    //       return Number(a.salaryScale) <= Number(b.salaryScale) && a.id < b.id
+    //         ? -1
+    //         : 1;
+    //     } else {
+    //       return Number(a.salaryScale) <= Number(b.salaryScale) && a.id > b.id
+    //         ? -1
+    //         : 1;
+    //     }
+    //   });
+    // } else if (
+    //   this.state.filIdStaff != 0 &&
+    //   this.state.filSalaryScale != 0 &&
+    //   this.state.fillSalary != 0
+    // ) {
+    //   if (
+    //     this.state.filIdStaff == 1 &&
+    //     this.state.filSalaryScale == 1 &&
+    //     this.state.fillSalary == 1
+    //   ) {
+    //     arr = this.props.staff.sort((a, b) => {
+    //       let aSal =
+    //         Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //       let bSal =
+    //         Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //       return Number(a.salaryScale) >= Number(b.salaryScale) &&
+    //         a.id >= b.id &&
+    //         aSal >= bSal
+    //         ? -1
+    //         : 1;
+    //     });
+    //   } else if (
+    //     this.state.filIdStaff == 1 &&
+    //     this.state.filSalaryScale == 2 &&
+    //     this.state.fillSalary == 1
+    //   ) {
+    //     arr = this.props.staff.sort((a, b) => {
+    //       let aSal =
+    //         Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //       let bSal =
+    //         Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //       return Number(a.salaryScale) <= Number(b.salaryScale) &&
+    //         a.id >= b.id &&
+    //         aSal >= bSal
+    //         ? -1
+    //         : 1;
+    //     });
+    //   } else if (
+    //     this.state.filIdStaff == 1 &&
+    //     this.state.filSalaryScale == 1 &&
+    //     this.state.fillSalary == 2
+    //   ) {
+    //     arr = this.props.staff.sort((a, b) => {
+    //       let aSal =
+    //         Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //       let bSal =
+    //         Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //       return Number(a.salaryScale) >= Number(b.salaryScale) &&
+    //         a.id >= b.id &&
+    //         aSal <= bSal
+    //         ? -1
+    //         : 1;
+    //     });
+    //   } else if (
+    //     this.state.filIdStaff == 1 &&
+    //     this.state.filSalaryScale == 2 &&
+    //     this.state.fillSalary == 2
+    //   ) {
+    //     arr = this.props.staff.sort((a, b) => {
+    //       let aSal =
+    //         Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //       let bSal =
+    //         Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //       return Number(a.salaryScale) <= Number(b.salaryScale) &&
+    //         a.id >= b.id &&
+    //         aSal <= bSal
+    //         ? -1
+    //         : 1;
+    //     });
+    //   } else if (
+    //     this.state.filIdStaff == 2 &&
+    //     this.state.filSalaryScale == 1 &&
+    //     this.state.fillSalary == 1
+    //   ) {
+    //     arr = this.props.staff.sort((a, b) => {
+    //       let aSal =
+    //         Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //       let bSal =
+    //         Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //       return Number(a.salaryScale) >= Number(b.salaryScale) &&
+    //         a.id <= b.id &&
+    //         aSal >= bSal
+    //         ? -1
+    //         : 1;
+    //     });
+    //   } else if (
+    //     this.state.filIdStaff == 2 &&
+    //     this.state.filSalaryScale == 2 &&
+    //     this.state.fillSalary == 1
+    //   ) {
+    //     arr = this.props.staff.sort((a, b) => {
+    //       let aSal =
+    //         Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //       let bSal =
+    //         Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //       return Number(a.salaryScale) <= Number(b.salaryScale) &&
+    //         a.id <= b.id &&
+    //         aSal >= bSal
+    //         ? -1
+    //         : 1;
+    //     });
+    //   } else if (
+    //     this.state.filIdStaff == 2 &&
+    //     this.state.filSalaryScale == 2 &&
+    //     this.state.fillSalary == 2
+    //   ) {
+    //     arr = this.props.staff.sort((a, b) => {
+    //       let aSal =
+    //         Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //       let bSal =
+    //         Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //       return Number(a.salaryScale) <= Number(b.salaryScale) &&
+    //         a.id <= b.id &&
+    //         aSal <= bSal
+    //         ? -1
+    //         : 1;
+    //     });
+    //   } else if (
+    //     this.state.filIdStaff == 2 &&
+    //     this.state.filSalaryScale == 1 &&
+    //     this.state.fillSalary == 2
+    //   ) {
+    //     arr = this.props.staff.sort((a, b) => {
+    //       let aSal =
+    //         Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //       let bSal =
+    //         Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //       return Number(a.salaryScale) >= Number(b.salaryScale) &&
+    //         a.id <= b.id &&
+    //         aSal <= bSal
+    //         ? -1
+    //         : 1;
+    //     });
+    //   }
+    //   //
+    // } else if (
+    //   this.state.filIdStaff == 0 &&
+    //   this.state.filSalaryScale != 0 &&
+    //   this.state.fillSalary == 0
+    // ) {
+    //   arr = this.props.staff.sort((a, b) => {
+    //     if (this.state.filSalaryScale == 1) {
+    //       return Number(a.salaryScale) >= Number(b.salaryScale) ? -1 : 1;
+    //     } else {
+    //       return Number(a.salaryScale) <= Number(b.salaryScale) ? -1 : 1;
+    //     }
+    //   });
+    // } else if (
+    //   this.state.filIdStaff != 0 &&
+    //   this.state.filSalaryScale == 0 &&
+    //   this.state.fillSalary != 0
+    // ) {
+    //   arr = this.props.staff.sort((a, b) => {
+    //     let aSal =
+    //       Number(a.salaryScale) * 3000000 + Number(a.overTime) * 200000;
+    //     let bSal =
+    //       Number(b.salaryScale) * 3000000 + Number(b.overTime) * 200000;
+    //     if (this.state.filIdStaff == 1 && this.state.fillSalary == 1) {
+    //       return a.id > b.id && aSal >= bSal ? -1 : 1;
+    //     } else if (this.state.filIdStaff == 1 && this.state.fillSalary == 2) {
+    //       return a.id > b.id && aSal <= bSal ? -1 : 1;
+    //     } else if (this.state.filIdStaff == 2 && this.state.fillSalary == 2) {
+    //       return a.id < b.id && aSal <= bSal ? -1 : 1;
+    //     } else {
+    //       return a.id < b.id && aSal >= bSal ? -1 : 1;
+    //     }
+    //   });
+    // } else {
+    //   arr = this.props.staff.sort((a, b) => {
+    //     return a.id <= b.id ? -1 : 1;
+    //   });
+    // }
+  let sal=null;
+   if(this.props.salarys.isLoading)
+   {
+     sal=<Loading/>
+   }
+   else if(this.props.salarys.isError)
+   {
+      sal=<ErrorFetch isError={this.props.salarys.isError}/>
+   }
+   else
+   {
+      sal = this.props.salarys.salarys.map((value) => {
       return (
         <div key={value.id} className="col-lg-4 col-md-6 col-sm-6 col-12">
           <div className="card">
@@ -315,14 +329,13 @@ class Salary extends Component {
               <p className="card-text">Số ngày làm thêm: {value.overTime}</p>
             </div>
             <div className="card-footer text-muted text-center">
-              Lương:{" "}
-              {Number(value.salaryScale) * 3000000 +
-                Number(value.overTime) * 200000}
+              Lương: {value.salary}
             </div>
           </div>
         </div>
       );
     });
+   }
     return (
       <React.Fragment>
         <div className="row">
@@ -342,7 +355,7 @@ class Salary extends Component {
             </nav>
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="col-lg-4 col-md-6 col-sm-6 col-12 text-lg-center  text-md-right text-sm-right text-right">
             <label className="mr-2">Mã nhân viên</label>
             <select
@@ -379,10 +392,23 @@ class Salary extends Component {
               <option value={2}>Thấp đến cao</option>
             </select>
           </div>
-        </div>
-        <div className="row">{sal}</div>
+        </div> */}
+      <div className="row">{sal}</div>
+        
       </React.Fragment>
     );
   }
 }
-export default Salary;
+const mapStateToProps = (state) => {
+  return {
+    salarys: state.salarys
+  }
+}
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    fetchSalary:()=>{
+      dispatch(actions.fetchSalary());
+    }
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Salary);
